@@ -26,12 +26,12 @@ function makeResponsive() {
   var chartGroup = svg.append("g")
       .attr("transform", `translate(${chartMargin.left}, ${chartMargin.top})`);
 
-// Load data from PredictionData.csv
+// Load data from Waveformtotals.csv
   d3.csv("Waveformtotals.csv").then(function (sesData) {
 
     console.log(sesData);
 
-    // Cast the hours value to a number for each piece of tvData
+    // Cast the hours value to a number for each piece of Waveformdata
     sesData.forEach(function (d) {
       d.Count = +d.Count
     });
@@ -61,7 +61,7 @@ function makeResponsive() {
         .attr("transform", `translate(0, ${chartHeight})`)
         .call(bottomAxis);
 
-    // Create one SVG rectangle per piece of PredictionData
+    // Create one SVG rectangle per piece of Waveformdata
     // Use the linear and band scales to position each rectangle within the chart
     var Rectgroup = chartGroup.selectAll(".bar")
         .data(sesData)
@@ -74,12 +74,12 @@ function makeResponsive() {
         .attr("height", d => chartHeight - yLinearScale(d.Count));
 
 
-    // Step 1: Append tooltip div
+    // Append tooltip div
     var toolTip = d3.select("body")
         .append("div")
         .classed("tooltip", true);
 
-    // Step 2: Create "mouseover" event listener to display tooltip
+    // Create "mouseover" event listener to display tooltip
     Rectgroup.on("mouseover", function (d) {
       toolTip.style("display", "block")
           .html(
@@ -87,7 +87,7 @@ function makeResponsive() {
           .style("left", d3.event.pageX + "px")
           .style("top", d3.event.pageY + "px");
     })
-        // Step 3: Create "mouseout" event listener to hide tooltip
+        //  Create "mouseout" event listener to hide tooltip
         .on("mouseout", function () {
           toolTip.style("display", "none");
         });
