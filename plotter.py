@@ -9,12 +9,15 @@ waveform_percent = (waveform_per["Count"]/waveform_data.sum())*100
 explode = [.5,.25,.25,-.5,0,0,0,0,0]
 
 pieplot = plt.pie(x=waveform_data,explode=explode,labels=waveform_labels, radius=1.1, autopct="%1.1f%%")
+plt.savefig("visualization/Percentage_of_Total_Waveform_Pie_Chart.png", )
 plt.show()
+
 
 predicition_data = pd.read_csv("data/PredictionData.csv")
 
 trueDF = predicition_data.loc[predicition_data["Match"] == True]
 falseDF = predicition_data.loc[predicition_data["Match"] == False]
+
 
 
 
@@ -25,10 +28,10 @@ truey = trueDF["Magnitude"]
 falsex = falseDF["Depth"]
 falsey = falseDF["Magnitude"]
 
-N = len(waveform_labels) # Number of labels
+
 colors = ['red','green','blue','purple', 'yellow', 'magenta', 'black', 'brown', 'cyan']
 
-# setup the plot
+# setup the figure
 fig, (ax, ax1) = plt.subplots(nrows=2, figsize=(10,10))
 
 ax.scatter(truex, truey, c="green")
@@ -39,4 +42,5 @@ ax1.scatter(falsex,falsey, marker="x", c="red")
 ax1.set_xlabel("Depth")
 ax1.set_ylabel("Magnitude")
 ax1.set_title("Incorrect Predictions Depth vs. Magnitude")
+plt.savefig("visualization/Correct_vs_Incorrect_Over_Depth_and_Magnitude.png")
 plt.show()
