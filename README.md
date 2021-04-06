@@ -2,6 +2,7 @@
 Utilizing Machine Learning to predict seismic waveforms from USGS data
 ------------------------------------------------------------------------------
 To Replicate:
+
 Step 1:
 Open Seismic Data.py
 
