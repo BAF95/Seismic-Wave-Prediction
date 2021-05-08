@@ -6,9 +6,9 @@ waveform_per = pd.read_csv("data/Waveformtotals.csv")
 waveform_labels = waveform_per["Waveform"]
 waveform_data = waveform_per["Count"]
 waveform_percent = (waveform_per["Count"]/waveform_data.sum())*100
-explode = [.5,.25,.25,-.5,0,0,0,0,0]
+# explode = [.5,.25,.25,-.5,0,0,0,0,0]
 
-pieplot = plt.pie(x=waveform_data,explode=explode,labels=waveform_labels, radius=1.1, autopct="%1.1f%%")
+pieplot = plt.pie(x=waveform_data,labels=waveform_labels, radius=1.1, autopct="%1.1f%%")
 plt.savefig("visualization/Percentage_of_Total_Waveform_Pie_Chart.png", )
 plt.show()
 
